@@ -1,24 +1,44 @@
 /// <reference path="api.d.ts" />
 
-module API.Client {
+namespace API.Client {
     'use strict';
 
-    export class Measurement {
+    export interface Measurement {
 
         /**
-         * ORIGINAL Name of the variable for which we are creating the measurement records
+         * id
          */
-        variable: string;
+        id: number;
+
+        /**
+         * ID of user that owns this measurement
+         */
+        userId: number;
+
+        /**
+         * client_id
+         */
+        clientId: string;
+
+        /**
+         * Connector ID
+         */
+        connectorId: number;
+
+        /**
+         * ID of the variable for which we are creating the measurement records
+         */
+        variableId: number;
 
         /**
          * Application or device used to record the measurement values
          */
-        source: string;
+        sourceId: number;
 
         /**
-         * Timestamp for the measurement event in epoch time
+         * Start Time for the measurement event in ISO 8601
          */
-        timestamp: number;
+        startTime: number;
 
         /**
          * Converted measurement value in requested unit
@@ -26,19 +46,59 @@ module API.Client {
         value: number;
 
         /**
-         * Unit of measurement as requested in GET request
+         * Unit ID of measurement as requested in GET request
          */
-        unit: string;
+        unitId: number;
 
         /**
-         * Measurement value in the unit as orignally submitted
+         * Original value
          */
-        storedValue: number;
+        originalValue: number;
 
         /**
-         * Unit of measurement as originally submitted
+         * Unit ID of measurement as originally submitted
          */
-        storedUnit: string;
+        originalUnitId: number;
+
+        /**
+         * duration of measurement in seconds
+         */
+        duration: number;
+
+        /**
+         * Note of measurement
+         */
+        note: string;
+
+        /**
+         * latitude
+         */
+        latitude: number;
+
+        /**
+         * longitude
+         */
+        longitude: number;
+
+        /**
+         * location
+         */
+        location: string;
+
+        /**
+         * created_at
+         */
+        createdAt: Date;
+
+        /**
+         * updated_at
+         */
+        updatedAt: Date;
+
+        /**
+         * error
+         */
+        error: string;
     }
 
 }

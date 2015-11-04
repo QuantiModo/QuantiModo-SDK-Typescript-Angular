@@ -3,17 +3,22 @@
 namespace API.Client {
     'use strict';
 
-    export interface UnitCategory {
+    export interface Credential {
 
         /**
-         * id
+         * connector_id
          */
-        id: number;
+        connectorId: number;
 
         /**
-         * Unit category name
+         * attr_key
          */
-        name: string;
+        attrKey: string;
+
+        /**
+         * attr_value
+         */
+        attrValue: string;
 
         /**
          * created_at

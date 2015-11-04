@@ -1,9 +1,19 @@
 /// <reference path="api.d.ts" />
 
-module API.Client {
+namespace API.Client {
     'use strict';
 
-    export class Unit {
+    export interface Unit {
+
+        /**
+         * id
+         */
+        id: number;
+
+        /**
+         * client_id
+         */
+        clientId: string;
 
         /**
          * Unit name
@@ -16,40 +26,49 @@ module API.Client {
         abbreviatedName: string;
 
         /**
-         * Unit category
+         * Unit category ID
          */
-        category: Unit.CategoryEnum;
+        categoryId: number;
 
         /**
          * Unit minimum value
          */
-        minimum: number;
+        minimumValue: number;
 
         /**
          * Unit maximum value
          */
-        maximum: number;
+        maximumValue: number;
 
         /**
-         * Conversion steps list
+         * updated
          */
-        conversionSteps: Array<ConversionStep>;
+        updated: number;
+
+        /**
+         * ID of default unit
+         */
+        defaultUnitId: number;
+
+        /**
+         * Value multiplied to
+         */
+        multiply: number;
+
+        /**
+         * Value which should be added to convert to default unit
+         */
+        add: number;
+
+        /**
+         * created_at
+         */
+        createdAt: Date;
+
+        /**
+         * updated_at
+         */
+        updatedAt: Date;
     }
 
-    export module Unit {
-
-        export enum CategoryEnum {  
-            Distance = <any> 'Distance', 
-            Duration = <any> 'Duration', 
-            Energy = <any> 'Energy', 
-            Frequency = <any> 'Frequency', 
-            Miscellany = <any> 'Miscellany', 
-            Pressure = <any> 'Pressure', 
-            Proportion = <any> 'Proportion', 
-            Rating = <any> 'Rating', 
-            Temperature = <any> 'Temperature', 
-            Volume = <any> 'Volume', 
-            Weight = <any> 'Weight',
-        }
-    }
 }

@@ -3,7 +3,7 @@
 namespace API.Client {
     'use strict';
 
-    export interface UnitCategory {
+    export interface Source {
 
         /**
          * id
@@ -11,7 +11,12 @@ namespace API.Client {
         id: number;
 
         /**
-         * Unit category name
+         * client_id
+         */
+        clientId: string;
+
+        /**
+         * Name of the application or device
          */
         name: string;
 

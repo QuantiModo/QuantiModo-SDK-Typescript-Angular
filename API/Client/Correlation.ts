@@ -1,24 +1,39 @@
 /// <reference path="api.d.ts" />
 
-module API.Client {
+namespace API.Client {
     'use strict';
 
-    export class Correlation {
+    export interface Correlation {
+
+        /**
+         * id
+         */
+        id: number;
+
+        /**
+         * Time at which correlation was calculated
+         */
+        timestamp: number;
+
+        /**
+         * ID of user that owns this correlation
+         */
+        userId: number;
 
         /**
          * Pearson correlation coefficient between cause and effect measurements
          */
-        correlationCoefficient: number;
+        correlation: number;
 
         /**
-         * ORIGINAL variable name of the cause variable for which the user desires correlations.
+         * variable ID of the cause variable for which the user desires correlations
          */
-        cause: string;
+        causeId: number;
 
         /**
-         * ORIGINAL variable name of the effect variable for which the user desires correlations.
+         * variable ID of the effect variable for which the user desires correlations
          */
-        effect: string;
+        effectId: number;
 
         /**
          * User estimated or default time after cause measurement before a perceivable effect is observed
@@ -36,39 +51,79 @@ module API.Client {
         numberOfPairs: number;
 
         /**
-         * Magnitude of the effects of a cause indicating whether it's practically meaningful.
+         * cause value that predicts an above average effect value (in default unit for cause variable)
          */
-        effectSize: string;
+        valuePredictingHighOutcome: number;
+
+        /**
+         * cause value that predicts a below average effect value (in default unit for cause variable)
+         */
+        valuePredictingLowOutcome: number;
+
+        /**
+         * Optimal Pearson Product
+         */
+        optimalPearsonProduct: number;
+
+        /**
+         * Vote
+         */
+        vote: number;
 
         /**
          * A function of the effect size and sample size
          */
-        statisticalSignificance: string;
+        statisticalSignificance: number;
 
         /**
-         * Time at which correlation was calculated
+         * Unit of Cause
          */
-        timestamp: number;
+        causeUnit: string;
 
         /**
-         * Correlation when cause and effect are reversed. For any causal relationship, the forward correlation should exceed the reverse correlation.
+         * Unit ID of Cause
          */
-        reverseCorrelation: number;
+        causeUnitId: number;
 
         /**
-         * 
+         * Cause changes
          */
-        causalityFactor: number;
+        causeChanges: number;
 
         /**
-         * Variable category of the cause variable.
+         * Effect changes
          */
-        causeCategory: string;
+        effectChanges: number;
 
         /**
-         * Variable category of the effect variable.
+         * QM Score
          */
-        effectCategory: string;
+        qmScore: number;
+
+        /**
+         * error
+         */
+        error: string;
+
+        /**
+         * created_at
+         */
+        createdAt: Date;
+
+        /**
+         * updated_at
+         */
+        updatedAt: Date;
+
+        /**
+         * Correlation when cause and effect are reversed. For any causal relationship, the forward correlation should exceed the reverse correlation
+         */
+        reversePearsonCorrelationCoefficient: number;
+
+        /**
+         * Predictive Pearson Correlation Coefficient
+         */
+        predictivePearsonCorrelationCoefficient: number;
     }
 
 }

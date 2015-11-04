@@ -3,7 +3,7 @@
 namespace API.Client {
     'use strict';
 
-    export interface UnitCategory {
+    export interface MeasurementExport {
 
         /**
          * id
@@ -11,9 +11,19 @@ namespace API.Client {
         id: number;
 
         /**
-         * Unit category name
+         * ID of User
          */
-        name: string;
+        userId: number;
+
+        /**
+         * Status of Measurement Export
+         */
+        status: string;
+
+        /**
+         * Error message
+         */
+        errorMessage: string;
 
         /**
          * created_at

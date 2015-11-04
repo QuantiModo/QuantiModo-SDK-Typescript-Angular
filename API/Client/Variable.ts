@@ -1,161 +1,189 @@
 /// <reference path="api.d.ts" />
 
-module API.Client {
+namespace API.Client {
     'use strict';
 
-    export class Variable {
+    export interface Variable {
 
         /**
-         * Variable ID
+         * id
          */
         id: number;
 
         /**
-         * User-defined variable display name.
+         * client_id
+         */
+        clientId: string;
+
+        /**
+         * parent_id
+         */
+        parentId: number;
+
+        /**
+         * Name of the variable
          */
         name: string;
 
         /**
-         * Name used when the variable was originally created in the `variables` table.
+         * Category of the variable
          */
-        originalName: string;
+        variableCategoryId: number;
 
         /**
-         * Variable category like Mood, Sleep, Physical Activity, Treatment, Symptom, etc.
+         * ID of the default unit of measurement to use for this variable
          */
-        category: string;
+        defaultUnitId: number;
 
         /**
-         * Abbreviated name of the default unit for the variable
+         * How to combine values of this variable (for instance, to see a summary of the values over a month) 0 for sum OR 1 for mean
          */
-        unit: string;
+        combinationOperation: string;
 
         /**
-         * Comma-separated list of source names to limit variables to those sources
-         */
-        sources: string;
-
-        /**
-         * Minimum reasonable value for this variable (uses default unit)
-         */
-        minimumValue: number;
-
-        /**
-         * Maximum reasonable value for this variable (uses default unit)
-         */
-        maximumValue: number;
-
-        /**
-         * How to aggregate measurements over time.
-         */
-        combinationOperation: Variable.CombinationOperationEnum;
-
-        /**
-         * Value for replacing null measurements
+         * filling_value
          */
         fillingValue: number;
 
         /**
-         * The Variable this Variable should be joined with. If the variable is joined with some other variable then it is not shown to user in the list of variables.
+         * maximum_allowed_value
          */
-        joinWith: string;
+        maximumAllowedValue: number;
 
         /**
-         * Array of Variables that are joined with this Variable
+         * minimum_allowed_value
          */
-        joinedVariables: Array<Variable>;
+        minimumAllowedValue: number;
 
         /**
-         * Id of the parent variable if this variable has any parent
-         */
-        parent: number;
-
-        /**
-         * Array of Variables that are sub variables to this Variable
-         */
-        subVariables: Array<Variable>;
-
-        /**
-         * How long it takes for a measurement in this variable to take effect
+         * onset_delay
          */
         onsetDelay: number;
 
         /**
-         * How long the effect of a measurement in this variable lasts
+         * duration_of_action
          */
         durationOfAction: number;
 
         /**
-         * Earliest measurement time
+         * public
          */
-        earliestMeasurementTime: number;
+        _public: number;
 
         /**
-         * Latest measurement time
+         * cause_only
          */
-        latestMeasurementTime: number;
+        causeOnly: boolean;
 
         /**
-         * When this variable or its settings were last updated
-         */
-        updated: number;
-
-        /**
-         * A value of 1 indicates that this variable is generally a cause in a causal relationship.  An example of a causeOnly variable would be a variable such as Cloud Cover which would generally not be influenced by the behaviour of the user.
-         */
-        causeOnly: number;
-
-        /**
-         * Number of correlations
-         */
-        numberOfCorrelations: number;
-
-        /**
-         * Outcome variables (those with `outcome` == 1) are variables for which a human would generally want to identify the influencing factors.  These include symptoms of illness, physique, mood, cognitive performance, etc.  Generally correlation calculations are only performed on outcome variables.
-         */
-        outcome: number;
-
-        /**
-         * The number of measurements that a given user had for this variable the last time a correlation calculation was performed. Generally correlation values are only updated once the current number of measurements for a variable is more than 10% greater than the measurementsAtLastAnalysis.  This avoids a computationally-demanding recalculation when there's not enough new data to make a significant difference in the correlation.
-         */
-        measurementsAtLastAnalysis: number;
-
-        /**
-         * Number of measurements
-         */
-        numberOfMeasurements: number;
-
-        /**
-         * Last unit
-         */
-        lastUnit: number;
-
-        /**
-         * Last value
-         */
-        lastValue: number;
-
-        /**
-         * Most common value
+         * most_common_value
          */
         mostCommonValue: number;
 
         /**
-         * Most common unit
+         * most_common_unit_id
          */
-        mostCommonUnit: number;
+        mostCommonUnitId: number;
 
         /**
-         * Last source
+         * standard_deviation
          */
-        lastSource: number;
+        standardDeviation: number;
+
+        /**
+         * variance
+         */
+        variance: number;
+
+        /**
+         * mean
+         */
+        mean: number;
+
+        /**
+         * median
+         */
+        median: number;
+
+        /**
+         * number_of_measurements
+         */
+        numberOfMeasurements: number;
+
+        /**
+         * number_of_unique_values
+         */
+        numberOfUniqueValues: number;
+
+        /**
+         * skewness
+         */
+        skewness: number;
+
+        /**
+         * kurtosis
+         */
+        kurtosis: number;
+
+        /**
+         * status
+         */
+        status: string;
+
+        /**
+         * error_message
+         */
+        errorMessage: string;
+
+        /**
+         * last_successful_update_time
+         */
+        lastSuccessfulUpdateTime: Date;
+
+        /**
+         * created_at
+         */
+        createdAt: Date;
+
+        /**
+         * updated_at
+         */
+        updatedAt: Date;
+
+        /**
+         * product_url
+         */
+        productUrl: string;
+
+        /**
+         * image_url
+         */
+        imageUrl: string;
+
+        /**
+         * price
+         */
+        price: number;
+
+        /**
+         * number_of_user_variables
+         */
+        numberOfUserVariables: number;
+
+        /**
+         * outcome
+         */
+        outcome: boolean;
+
+        /**
+         * minimum_recorded_value
+         */
+        minimumRecordedValue: number;
+
+        /**
+         * maximum_recorded_value
+         */
+        maximumRecordedValue: number;
     }
 
-    export module Variable {
-
-        export enum CombinationOperationEnum {  
-            MEAN = <any> 'MEAN', 
-            SUM = <any> 'SUM',
-        }
-    }
 }

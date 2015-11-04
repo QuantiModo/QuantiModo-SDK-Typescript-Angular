@@ -1,9 +1,9 @@
 /// <reference path="api.d.ts" />
 
-module API.Client {
+namespace API.Client {
     'use strict';
 
-    export class Connector {
+    export interface Connector {
 
         /**
          * Connector ID number
@@ -31,29 +31,24 @@ module API.Client {
         getItUrl: string;
 
         /**
-         * True if the authenticated user has this connector enabled
+         * Short description
          */
-        connected: string;
+        shortDescription: string;
 
         /**
-         * URL and parameters used when connecting to a service
+         * Long description
          */
-        connectInstructions: string;
+        longDescription: string;
 
         /**
-         * Epoch timestamp of last sync
+         * enabled
          */
-        lastUpdate: number;
+        enabled: boolean;
 
         /**
-         * Number of measurements obtained during latest update
+         * oauth
          */
-        latestData: number;
-
-        /**
-         * True if user has no measurements for this connector
-         */
-        noDataYet: boolean;
+        oauth: boolean;
     }
 
 }
