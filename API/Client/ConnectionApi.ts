@@ -6,12 +6,12 @@ namespace API.Client {
     'use strict';
 
     export class ConnectionApi {
-        private basePath = 'https://app.quantimo.do/api/v2';
+        protected basePath = 'https://app.quantimo.do/api/v2';
         public defaultHeaders : any = {};
 
         static $inject: string[] = ['$http', '$httpParamSerializer'];
 
-        constructor(private $http: ng.IHttpService, basePath?: string, private $httpParamSerializer?: (d: any) => any) {
+        constructor(protected $http: ng.IHttpService, protected $httpParamSerializer?: (d: any) => any, basePath?: string) {
             if (basePath) {
                 this.basePath = basePath;
             }
