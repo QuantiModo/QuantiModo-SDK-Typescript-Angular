@@ -211,83 +211,6 @@ namespace API.Client {
             return this.$http(httpRequestParams);
         }
         /**
-         * Get daily measurements for this user
-         * Measurements are any value that can be recorded like daily steps, a mood rating, or apples eaten. Supported filter parameters:&lt;ul&gt;&lt;li&gt;&lt;b&gt;value&lt;/b&gt; - Value of measurement&lt;/li&gt;&lt;li&gt;&lt;b&gt;updatedAt&lt;/b&gt; - The time that this measurement was created or last updated in the UTC format \&quot;YYYY-MM-DDThh:mm:ss\&quot;&lt;/li&gt;&lt;/ul&gt;
-         * @param variableName Name of the variable you want measurements for
-         * @param userId User&#39;s id
-         * @param unitAbbreviatedName The unit your want the measurements in
-         * @param startTime The lower limit of measurements returned (UTC Iso8601 \&quot;YYYY-MM-DDThh:mm:ss\&quot; format)
-         * @param endTime The upper limit of measurements returned (UTC Iso8601 \&quot;YYYY-MM-DDThh:mm:ss\&quot; format)
-         * @param groupingWidth The time (in seconds) over which measurements are grouped together
-         * @param groupingTimezone The time (in seconds) over which measurements are grouped together
-         * @param limit The LIMIT is used to limit the number of results returned. So if you have 1000 results, but only want to the first 10, you would set this to 10 and offset to 0.
-         * @param offset Since the maximum limit is 200 records, to get more than that you&#39;ll have to make multiple API calls and page through the results. To retrieve all the data, you can iterate through data by using the &#x60;limit&#x60; and &#x60;offset&#x60; query parameters.  For example, if you want to retrieve data from 61-80 then you can use a query with the following parameters, &#x60;imit&#x3D;20&amp;offset&#x3D;60&#x60;.
-         * @param sort Sort by given field. If the field is prefixed with &#x60;-, it will sort in descending order.
-         */
-        public v1MeasurementsDailyGet (variableName: string, userId?: number, unitAbbreviatedName?: string, startTime?: string, endTime?: string, groupingWidth?: number, groupingTimezone?: string, limit?: number, offset?: number, sort?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Measurement> {
-            const localVarPath = this.basePath + '/v1/measurements/daily';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'variableName' is not null or undefined
-            if (variableName === null || variableName === undefined) {
-                throw new Error('Required parameter variableName was null or undefined when calling v1MeasurementsDailyGet.');
-            }
-            if (userId !== undefined) {
-                queryParameters['userId'] = userId;
-            }
-
-            if (variableName !== undefined) {
-                queryParameters['variableName'] = variableName;
-            }
-
-            if (unitAbbreviatedName !== undefined) {
-                queryParameters['unitAbbreviatedName'] = unitAbbreviatedName;
-            }
-
-            if (startTime !== undefined) {
-                queryParameters['startTime'] = startTime;
-            }
-
-            if (endTime !== undefined) {
-                queryParameters['endTime'] = endTime;
-            }
-
-            if (groupingWidth !== undefined) {
-                queryParameters['groupingWidth'] = groupingWidth;
-            }
-
-            if (groupingTimezone !== undefined) {
-                queryParameters['groupingTimezone'] = groupingTimezone;
-            }
-
-            if (limit !== undefined) {
-                queryParameters['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                queryParameters['offset'] = offset;
-            }
-
-            if (sort !== undefined) {
-                queryParameters['sort'] = sort;
-            }
-
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: localVarPath,
-                json: true,
-                                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
          * Delete a measurement
          * Delete a previously submitted measurement
          * @param body The startTime and variableId of the measurement to be deleted.
@@ -341,39 +264,6 @@ namespace API.Client {
                 json: true,
                 data: body,
                                 params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * Get measurements range for this user
-         * Get Unix time-stamp (epoch time) of the user&#39;s first and last measurements taken.
-         * @param sources Enter source name to limit to specific source (varchar)
-         * @param user If not specified, uses currently logged in user (bigint)
-         */
-        public v1MeasurementsRangeGet (sources?: string, user?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<MeasurementRange> {
-            const localVarPath = this.basePath + '/v1/measurementsRange';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            if (sources !== undefined) {
-                queryParameters['sources'] = sources;
-            }
-
-            if (user !== undefined) {
-                queryParameters['user'] = user;
-            }
-
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: localVarPath,
-                json: true,
-                                                params: queryParameters,
                 headers: headerParams
             };
 

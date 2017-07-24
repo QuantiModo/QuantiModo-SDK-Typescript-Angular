@@ -114,98 +114,20 @@ namespace API.Client {
             return this.$http(httpRequestParams);
         }
         /**
-         * Skip a pending tracking reminder
-         * Deletes the pending tracking reminder
-         * @param body Id of the pending reminder to be skipped or deleted
-         * @param accessToken User&#39;s OAuth2 access token
-         * @param userId User&#39;s id
-         */
-        public v1TrackingReminderNotificationsSkipPost (body: TrackingReminderNotificationSkip, accessToken?: string, userId?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<CommonResponse> {
-            const localVarPath = this.basePath + '/v1/trackingReminderNotifications/skip';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new Error('Required parameter body was null or undefined when calling v1TrackingReminderNotificationsSkipPost.');
-            }
-            if (accessToken !== undefined) {
-                queryParameters['access_token'] = accessToken;
-            }
-
-            if (userId !== undefined) {
-                queryParameters['userId'] = userId;
-            }
-
-            let httpRequestParams: any = {
-                method: 'POST',
-                url: localVarPath,
-                json: true,
-                data: body,
-                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
          * Snooze a pending tracking reminder
          * Changes the reminder time to now plus one hour
          * @param body Id of the pending reminder to be snoozed
          * @param accessToken User&#39;s OAuth2 access token
          * @param userId User&#39;s id
          */
-        public v1TrackingReminderNotificationsSnoozePost (body: TrackingReminderNotificationSnooze, accessToken?: string, userId?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<CommonResponse> {
-            const localVarPath = this.basePath + '/v1/trackingReminderNotifications/snooze';
+        public v1TrackingReminderNotificationsPost (body: TrackingReminderNotificationSnooze, accessToken?: string, userId?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<CommonResponse> {
+            const localVarPath = this.basePath + '/v1/trackingReminderNotifications';
 
             let queryParameters: any = {};
             let headerParams: any = this.extendObj({}, this.defaultHeaders);
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new Error('Required parameter body was null or undefined when calling v1TrackingReminderNotificationsSnoozePost.');
-            }
-            if (accessToken !== undefined) {
-                queryParameters['access_token'] = accessToken;
-            }
-
-            if (userId !== undefined) {
-                queryParameters['userId'] = userId;
-            }
-
-            let httpRequestParams: any = {
-                method: 'POST',
-                url: localVarPath,
-                json: true,
-                data: body,
-                                params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * Track a pending tracking reminder
-         * Adds the default measurement for the pending tracking reminder with the reminder time as the measurment start time
-         * @param body Id of the pending reminder to be tracked
-         * @param accessToken User&#39;s OAuth2 access token
-         * @param userId User&#39;s id
-         */
-        public v1TrackingReminderNotificationsTrackPost (body: TrackingReminderNotificationTrack, accessToken?: string, userId?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<CommonResponse> {
-            const localVarPath = this.basePath + '/v1/trackingReminderNotifications/track';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            // verify required parameter 'body' is not null or undefined
-            if (body === null || body === undefined) {
-                throw new Error('Required parameter body was null or undefined when calling v1TrackingReminderNotificationsTrackPost.');
+                throw new Error('Required parameter body was null or undefined when calling v1TrackingReminderNotificationsPost.');
             }
             if (accessToken !== undefined) {
                 queryParameters['access_token'] = accessToken;
