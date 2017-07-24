@@ -51,6 +51,109 @@ namespace API.Client {
         }
 
         /**
+         * Get measurements for this user
+         * Measurements are any value that can be recorded like daily steps, a mood rating, or apples eaten. Supported filter parameters:&lt;ul&gt;&lt;li&gt;&lt;b&gt;value&lt;/b&gt; - Value of measurement&lt;/li&gt;&lt;li&gt;&lt;b&gt;updatedAt&lt;/b&gt; - The time that this measurement was created or last updated in the UTC format \&quot;YYYY-MM-DDThh:mm:ss\&quot;&lt;/li&gt;&lt;/ul&gt;
+         * @param userId User&#39;s id
+         * @param id Measurement id
+         * @param variableName Name of the variable you want measurements for
+         * @param variableCategoryName Name of the variable category you want measurements for
+         * @param sourceName ID of the source you want measurements for (supports exact name match only)
+         * @param value Value of measurement
+         * @param unitAbbreviatedName The unit you want the measurements returned in
+         * @param earliestMeasurementTime The lower limit of measurements returned in ISO 8601 format or epoch seconds (unixtime)
+         * @param latestMeasurementTime The upper limit of measurements returned in ISO 8601 format or epoch seconds (unixtime)
+         * @param createdAt The time the measurement record was first created in the format YYYY-MM-DDThh:mm:ss. Time zone should be UTC and not local.
+         * @param updatedAt The time the measurement record was last changed in the format YYYY-MM-DDThh:mm:ss. Time zone should be UTC and not local.
+         * @param groupingWidth The time (in seconds) over which measurements are grouped together
+         * @param groupingTimezone The time (in seconds) over which measurements are grouped together
+         * @param limit The LIMIT is used to limit the number of results returned. So if you have 1000 results, but only want to the first 10, you would set this to 10 and offset to 0.
+         * @param offset Since the maximum limit is 200 records, to get more than that you&#39;ll have to make multiple API calls and page through the results. To retrieve all the data, you can iterate through data by using the &#x60;limit&#x60; and &#x60;offset&#x60; query parameters.  For example, if you want to retrieve data from 61-80 then you can use a query with the following parameters, &#x60;imit&#x3D;20&amp;offset&#x3D;60&#x60;.
+         * @param sort Sort by given field. If the field is prefixed with &#x60;-, it will sort in descending order.
+         */
+        public getMeasurements (userId?: number, id?: number, variableName?: string, variableCategoryName?: string, sourceName?: string, value?: string, unitAbbreviatedName?: string, earliestMeasurementTime?: string, latestMeasurementTime?: string, createdAt?: string, updatedAt?: string, groupingWidth?: number, groupingTimezone?: string, limit?: number, offset?: number, sort?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Measurement> {
+            const localVarPath = this.basePath + '/v1/measurements';
+
+            let queryParameters: any = {};
+            let headerParams: any = this.extendObj({}, this.defaultHeaders);
+            if (userId !== undefined) {
+                queryParameters['userId'] = userId;
+            }
+
+            if (id !== undefined) {
+                queryParameters['id'] = id;
+            }
+
+            if (variableName !== undefined) {
+                queryParameters['variableName'] = variableName;
+            }
+
+            if (variableCategoryName !== undefined) {
+                queryParameters['variableCategoryName'] = variableCategoryName;
+            }
+
+            if (sourceName !== undefined) {
+                queryParameters['sourceName'] = sourceName;
+            }
+
+            if (value !== undefined) {
+                queryParameters['value'] = value;
+            }
+
+            if (unitAbbreviatedName !== undefined) {
+                queryParameters['unitAbbreviatedName'] = unitAbbreviatedName;
+            }
+
+            if (earliestMeasurementTime !== undefined) {
+                queryParameters['earliestMeasurementTime'] = earliestMeasurementTime;
+            }
+
+            if (latestMeasurementTime !== undefined) {
+                queryParameters['latestMeasurementTime'] = latestMeasurementTime;
+            }
+
+            if (createdAt !== undefined) {
+                queryParameters['createdAt'] = createdAt;
+            }
+
+            if (updatedAt !== undefined) {
+                queryParameters['updatedAt'] = updatedAt;
+            }
+
+            if (groupingWidth !== undefined) {
+                queryParameters['groupingWidth'] = groupingWidth;
+            }
+
+            if (groupingTimezone !== undefined) {
+                queryParameters['groupingTimezone'] = groupingTimezone;
+            }
+
+            if (limit !== undefined) {
+                queryParameters['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                queryParameters['offset'] = offset;
+            }
+
+            if (sort !== undefined) {
+                queryParameters['sort'] = sort;
+            }
+
+            let httpRequestParams: any = {
+                method: 'GET',
+                url: localVarPath,
+                json: true,
+                                                params: queryParameters,
+                headers: headerParams
+            };
+
+            if (extraHttpRequestParams) {
+                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
+            }
+
+            return this.$http(httpRequestParams);
+        }
+        /**
          * Get measurement sources
          * Returns a list of all the apps from which measurement data is obtained.
          */
@@ -204,109 +307,6 @@ namespace API.Client {
                 json: true,
                 data: body,
                                 params: queryParameters,
-                headers: headerParams
-            };
-
-            if (extraHttpRequestParams) {
-                httpRequestParams = this.extendObj(httpRequestParams, extraHttpRequestParams);
-            }
-
-            return this.$http(httpRequestParams);
-        }
-        /**
-         * Get measurements for this user
-         * Measurements are any value that can be recorded like daily steps, a mood rating, or apples eaten. Supported filter parameters:&lt;ul&gt;&lt;li&gt;&lt;b&gt;value&lt;/b&gt; - Value of measurement&lt;/li&gt;&lt;li&gt;&lt;b&gt;updatedAt&lt;/b&gt; - The time that this measurement was created or last updated in the UTC format \&quot;YYYY-MM-DDThh:mm:ss\&quot;&lt;/li&gt;&lt;/ul&gt;
-         * @param userId User&#39;s id
-         * @param id Measurement id
-         * @param variableName Name of the variable you want measurements for
-         * @param variableCategoryName Name of the variable category you want measurements for
-         * @param sourceName ID of the source you want measurements for (supports exact name match only)
-         * @param value Value of measurement
-         * @param unitAbbreviatedName The unit you want the measurements returned in
-         * @param earliestMeasurementTime The lower limit of measurements returned in ISO 8601 format or epoch seconds (unixtime)
-         * @param latestMeasurementTime The upper limit of measurements returned in ISO 8601 format or epoch seconds (unixtime)
-         * @param createdAt The time the measurement record was first created in the format YYYY-MM-DDThh:mm:ss. Time zone should be UTC and not local.
-         * @param updatedAt The time the measurement record was last changed in the format YYYY-MM-DDThh:mm:ss. Time zone should be UTC and not local.
-         * @param groupingWidth The time (in seconds) over which measurements are grouped together
-         * @param groupingTimezone The time (in seconds) over which measurements are grouped together
-         * @param limit The LIMIT is used to limit the number of results returned. So if you have 1000 results, but only want to the first 10, you would set this to 10 and offset to 0.
-         * @param offset Since the maximum limit is 200 records, to get more than that you&#39;ll have to make multiple API calls and page through the results. To retrieve all the data, you can iterate through data by using the &#x60;limit&#x60; and &#x60;offset&#x60; query parameters.  For example, if you want to retrieve data from 61-80 then you can use a query with the following parameters, &#x60;imit&#x3D;20&amp;offset&#x3D;60&#x60;.
-         * @param sort Sort by given field. If the field is prefixed with &#x60;-, it will sort in descending order.
-         */
-        public v1MeasurementsGet (userId?: number, id?: number, variableName?: string, variableCategoryName?: string, sourceName?: string, value?: string, unitAbbreviatedName?: string, earliestMeasurementTime?: string, latestMeasurementTime?: string, createdAt?: string, updatedAt?: string, groupingWidth?: number, groupingTimezone?: string, limit?: number, offset?: number, sort?: number, extraHttpRequestParams?: any ) : ng.IHttpPromise<Measurement> {
-            const localVarPath = this.basePath + '/v1/measurements';
-
-            let queryParameters: any = {};
-            let headerParams: any = this.extendObj({}, this.defaultHeaders);
-            if (userId !== undefined) {
-                queryParameters['userId'] = userId;
-            }
-
-            if (id !== undefined) {
-                queryParameters['id'] = id;
-            }
-
-            if (variableName !== undefined) {
-                queryParameters['variableName'] = variableName;
-            }
-
-            if (variableCategoryName !== undefined) {
-                queryParameters['variableCategoryName'] = variableCategoryName;
-            }
-
-            if (sourceName !== undefined) {
-                queryParameters['sourceName'] = sourceName;
-            }
-
-            if (value !== undefined) {
-                queryParameters['value'] = value;
-            }
-
-            if (unitAbbreviatedName !== undefined) {
-                queryParameters['unitAbbreviatedName'] = unitAbbreviatedName;
-            }
-
-            if (earliestMeasurementTime !== undefined) {
-                queryParameters['earliestMeasurementTime'] = earliestMeasurementTime;
-            }
-
-            if (latestMeasurementTime !== undefined) {
-                queryParameters['latestMeasurementTime'] = latestMeasurementTime;
-            }
-
-            if (createdAt !== undefined) {
-                queryParameters['createdAt'] = createdAt;
-            }
-
-            if (updatedAt !== undefined) {
-                queryParameters['updatedAt'] = updatedAt;
-            }
-
-            if (groupingWidth !== undefined) {
-                queryParameters['groupingWidth'] = groupingWidth;
-            }
-
-            if (groupingTimezone !== undefined) {
-                queryParameters['groupingTimezone'] = groupingTimezone;
-            }
-
-            if (limit !== undefined) {
-                queryParameters['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                queryParameters['offset'] = offset;
-            }
-
-            if (sort !== undefined) {
-                queryParameters['sort'] = sort;
-            }
-
-            let httpRequestParams: any = {
-                method: 'GET',
-                url: localVarPath,
-                json: true,
-                                                params: queryParameters,
                 headers: headerParams
             };
 
